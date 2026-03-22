@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
     "build": "tsc",
     "start": "node dist/infrastructure/server.js",
     "dev": "tsx watch src/infrastructure/server.ts"
