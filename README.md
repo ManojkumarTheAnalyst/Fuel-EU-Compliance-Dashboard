@@ -6,10 +6,10 @@ A full-stack reference implementation for **Fuel EU Maritime**–style complianc
 
 ## Tech stack
 
-| Layer | Technologies |
-|--------|----------------|
+| Layer        | Technologies                                                                                                                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frontend** | [React](https://react.dev/) 18, [Tailwind CSS](https://tailwindcss.com/) 3, [Vite](https://vitejs.dev/), [TypeScript](https://www.typescriptlang.org/), [Axios](https://axios-http.com/), [Recharts](https://recharts.org/) |
-| **Backend** | [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), **TypeScript** |
+| **Backend**  | [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), **TypeScript**                                                                                                                                           |
 
 ---
 
@@ -28,7 +28,7 @@ This keeps regulatory and UI concerns testable and swappable (e.g. replacing the
 
 ## Prerequisites
 
-- **Node.js** 18+ (LTS recommended)  
+- **Node.js** 18+ (LTS recommended)
 - **npm** (bundled with Node)
 
 ---
@@ -63,9 +63,18 @@ The frontend expects the API at `http://localhost:5000` unless you set **`VITE_A
 
 ### 3. Run both together
 
-1. Start **backend** (`backend/npm run dev`).  
-2. Start **frontend** (`frontend/npm run dev`).  
+1. Start **backend** (`backend/npm run dev`).
+2. Start **frontend** (`frontend/npm run dev`).
 3. Open the Vite URL in your browser.
+
+### Database Setup
+
+This project uses PostgreSQL as the primary database with Prisma ORM.
+
+1. Ensure PostgreSQL is running locally.
+2. Configure your connection string in `backend/.env`.
+3. Run migrations: `npx prisma db push`
+4. Seed initial route data: `npx tsx prisma/seed.ts`
 
 > **macOS note:** If port **5000** is already in use (e.g. **AirPlay Receiver**), either disable AirPlay Receiver in **System Settings** or change the backend port and point `VITE_API_URL` at the new port.
 

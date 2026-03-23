@@ -9,7 +9,7 @@ This document reflects on **what made the work hard**, how we kept **pooling num
 Fuel EU Maritime is a **dense regulatory frame**: well-to-wake GHG intensity, multi-year targets, banking and pooling under **Articles 20 and 21**, and reporting concepts that do not map one-to-one to a CRUD app.
 
 **Regulatory fidelity vs. product speed**  
-We deliberately used **simplified, explainable rules** in code (e.g. caps and ledgers that mirror the *spirit* of Article 20, pooled intensity vs. a ceiling for Article 21) while staying clear that this is a **dashboard prototype**, not certified compliance software. The hard part is knowing where to stop modeling so the team can still **ship, test, and iterate**.
+We deliberately used **simplified, explainable rules** in code (e.g. caps and ledgers that mirror the _spirit_ of Article 20, pooled intensity vs. a ceiling for Article 21) while staying clear that this is a **dashboard prototype**, not certified compliance software. The hard part is knowing where to stop modeling so the team can still **ship, test, and iterate**.
 
 **Units and mental models**  
 Intensity (gCO₂e/MJ), energy (MJ), and “compliance balance” style quantities are easy to mix up. A recurring challenge was **naming and comments** so engineers and stakeholders agree whether a positive balance means “deficit vs. target” or “surplus” in a given screen. Misaligned sign conventions break filters, colors, and button enablement.
@@ -61,3 +61,6 @@ All tabs stay in memory and may run effects on first mount; for this app size th
 ## Closing thought
 
 The hardest part of “Fuel EU” software is rarely the chart—it is **aligning simplified models with regulatory intent**, **keeping numbers consistent across screens**, and **removing friction** so experts can explore scenarios without fighting the UI. This prototype is a step in that direction.
+
+- **Database Integration:** Using AI agents allowed me to quickly generate the Prisma schema and seed data for the FuelEU Maritime routes (R001-R005). What would have taken an hour of manual boilerplate writing was done in minutes.
+- **Architectural Integrity:** The agent helped me maintain the Hexagonal Architecture even while switching from mock data to a real PostgreSQL database, ensuring that the domain logic remained decoupled from the database adapters.

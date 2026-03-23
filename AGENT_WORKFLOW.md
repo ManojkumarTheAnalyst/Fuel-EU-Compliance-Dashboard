@@ -26,7 +26,7 @@ On **macOS**, **AirPlay Receiver** can bind **TCP port 5000**, which conflicts w
 
 **Typical ways to resolve it:**
 
-1. **Turn off AirPlay Receiver** — *System Settings → General → AirDrop & Handoff* (or *Sharing*) — disable **AirPlay Receiver** so port 5000 is free for the API.
+1. **Turn off AirPlay Receiver** — _System Settings → General → AirDrop & Handoff_ (or _Sharing_) — disable **AirPlay Receiver** so port 5000 is free for the API.
 2. **Run the API on another port** — Change `PORT` in the backend server (e.g. `5001`) and point the frontend `http-client` / `VITE_API_URL` at the same port.
 
 Pick one approach for local dev; document the chosen port for anyone cloning the repo.
@@ -68,15 +68,21 @@ Work proceeded in **vertical slices**, often backend-then-frontend:
 
 Each slice was **reviewed in the IDE**, then the next prompt extended behavior (filters, comparison endpoint, banking apply, tab persistence) without collapsing layers together.
 
+## Validation / Corrections
+
+- **Environment Conflict:** Initially, the agent suggested Prisma version 7 configurations (`prisma.config.ts`), which were incompatible with our environment. I manually reverted to Prisma 5 standards and deleted the redundant config file.
+- **TypeScript Resolution:** Faced a `Cannot find name 'process'` error in the seed file. I used the agent to identify missing `@types/node` and updated `tsconfig.json` to include the `prisma` directory in the compilation scope.
+- **Database Connectivity:** Verified the database connection by running the seed script and checking the logs for "Seed data inserted successfully!".
+
 ---
 
 ## Summary
 
-| Topic | Approach |
-|--------|-----------|
-| **AI-assisted design** | Cursor + Sonnet for structured prompts; hexagonal boundaries kept explicit. |
-| **Port 5000** | macOS AirPlay vs API—disable AirPlay Receiver or change API port + env. |
-| **Tab state** | Always render tabs; `block` / `hidden` wrappers in `App.tsx`. |
-| **Banking / Pooling** | Iterative API + UI; Article 20 ledger/apply; Article 21 validation + pool create. |
+| Topic                  | Approach                                                                          |
+| ---------------------- | --------------------------------------------------------------------------------- |
+| **AI-assisted design** | Cursor + Sonnet for structured prompts; hexagonal boundaries kept explicit.       |
+| **Port 5000**          | macOS AirPlay vs API—disable AirPlay Receiver or change API port + env.           |
+| **Tab state**          | Always render tabs; `block` / `hidden` wrappers in `App.tsx`.                     |
+| **Banking / Pooling**  | Iterative API + UI; Article 20 ledger/apply; Article 21 validation + pool create. |
 
 This file is a **project memoir** for onboarding and future refactors—not a runtime spec. For exact endpoints and types, refer to `backend/src` and `frontend/src/core`.
