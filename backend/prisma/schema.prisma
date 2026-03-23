@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Route {
+  id               Int      @id @default(autoincrement())
+  routeId          String   @unique @map("route_id")
+  vesselType       String?  @map("vessel_type")
+  fuelType         String?  @map("fuel_type")
+  year             Int
+  ghgIntensity     Float    @map("ghg_intensity")
+  fuelConsumption  Float    @map("fuel_consumption")
+  distance         Float
+  totalEmissions   Float    @map("total_emissions")
+  isBaseline       Boolean  @default(false) @map("is_baseline")
+
+  @@map("routes")
+}
+
+model ShipCompliance {
+  id        Int    @id @default(autoincrement())
+  shipId    String @map("ship_id")
+  year      Int
+  cbGco2eq  Float  @map("cb_gco2eq")
+
+  @@unique([shipId, year])
+  @@map("ship_compliance")
+}
